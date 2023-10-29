@@ -1,31 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { message } from "../firebase";
-import { getToken } from "firebase/messaging";
+import "./firebase-messaging";
 
 function App() {
-  useEffect(() => {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        getToken(message, {
-          vapidKey:
-            "BE3fH5Eig6gojE7TWndrW8fclozdir9lqlLSGmpyGqA7QGc0ToYYew_1NGfeir3fosqTiOjD6gj7HWdSfvFKp5M",
-        })
-          .then(() => {
-            console.log("Notification permission granted.");
-            return message.getToken();
-          })
-          .then((token) => {
-            console.log("FCM Token:", token);
-          })
-          .catch((error) => {
-            console.error("Error requesting permission:", error);
-          });
-      }
-    });
-
-    // BE3fH5Eig6gojE7TWndrW8fclozdir9lqlLSGmpyGqA7QGc0ToYYew_1NGfeir3fosqTiOjD6gj7HWdSfvFKp5M;
-  }, []);
   const [count, setCount] = useState(0);
 
   return (
