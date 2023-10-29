@@ -29,12 +29,10 @@ const requestPermission = () => {
         vapidKey:
           "BE3fH5Eig6gojE7TWndrW8fclozdir9lqlLSGmpyGqA7QGc0ToYYew_1NGfeir3fosqTiOjD6gj7HWdSfvFKp5M",
       })
-        .then(() => {
-          console.log("Notification permission granted.");
-          return message.getToken();
-        })
         .then((token) => {
           console.log("FCM Token:", token);
+
+          console.log("Notification permission granted.");
         })
         .catch((error) => {
           console.error("Error requesting permission:", error);
