@@ -42,4 +42,4 @@ export const requestPermission = () => {
     }
   });
 };
-// requestPermission();
+requestPermission();
