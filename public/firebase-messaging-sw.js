@@ -1,9 +1,9 @@
-// Import and configure the Firebase SDK
-// These scripts are made available when the app is served or deployed on Firebase Hosting
-// If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup
-
-import { initializeApp } from "firebase/app";
-import { getMessaging } from "firebase/messaging";
+importScripts(
+  "https://www.gstatic.com/firebasejs/9.2.0/firebase-app-compat.js"
+);
+importScripts(
+  "https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging-compat.js"
+);
 
 const firebaseConfig = {
   apiKey: "AIzaSyCIshYXUNtTk5Va8EMHZlfr27h86FwYU84",
@@ -14,9 +14,8 @@ const firebaseConfig = {
   appId: "1:177065416317:web:134599fbd7cdffdbda8314",
   measurementId: "G-PR9PLLYQPS",
 };
-const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
-
+const firebase = firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
 messaging.onBackgroundMessage(function (payload) {
   console.log(
     "[firebase-messaging-sw.js] Received background message ",
@@ -25,8 +24,8 @@ messaging.onBackgroundMessage(function (payload) {
   // Customize notification here
   const notificationTitle = "Background Message Title";
   const notificationOptions = {
-    body: "Background Message body.",
-    icon: "/vite.svg",
+    body: payload.notification.body,
+    icon: payload.notification.image,
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
