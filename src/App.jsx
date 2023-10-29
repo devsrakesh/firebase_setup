@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import "./firebase-messaging";
+import { requestPermission } from "./firebase-messaging";
 function App() {
   const [count, setCount] = useState(0);
+  useEffect(() => {
+    requestPermission();
+  }, []);
   return (
     <>
       <h1>Vite + React</h1>

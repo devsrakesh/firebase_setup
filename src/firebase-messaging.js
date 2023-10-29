@@ -21,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 // Initialize Firebase
 
-const requestPermission = () => {
+export const requestPermission = () => {
   Notification.requestPermission().then((permission) => {
     if (permission === "granted") {
       const message = getMessaging(app);
@@ -42,4 +42,4 @@ const requestPermission = () => {
     }
   });
 };
-requestPermission();
+// requestPermission();
